@@ -34,7 +34,7 @@ or simply use terminal command:
 
 KScript2 does not require to be in KAG folder. Same as original KScript, it does not require KScript2 to run on the same machine.
 
-**2. Preparing server**
+**2. Preparing server**  
 Open
     Kag/autoconfig.cfg.
 Make sure that `sv_tcpr` is set to 1
@@ -44,7 +44,7 @@ And set up a password
 
 You should also know the port of your KAG server (default is 50301) and IP (in case you are running KScript2 on a different machine)
 
-**3. Hello world**  
+**3. Hello world**
 When in your kscript2 folder, you can launch KScript2 by executing:
     ./kscript2.sh
 On it's first launch it will generate default config.json for you, where you can configure mods, turn them on and off. Everytime you install or update a mod, KScript2 will generate necessary configuration if needed and will inform you about this.
