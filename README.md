@@ -43,10 +43,15 @@ KScript2 does not require to be in KAG folder. Same as original KScript, it does
 **2. Preparing server**
 
 Open
+
     Kag/autoconfig.cfg.
+
 Make sure that `sv_tcpr` is set to 1
+
     sv_tcpr = 1
+
 And set up a password
+
     sv_rconpassword = sprskrtpswd
 
 You should also know the port of your KAG server (default is 50301) and IP (in case you are running KScript2 on a different machine)
@@ -54,19 +59,22 @@ You should also know the port of your KAG server (default is 50301) and IP (in c
 **3. Hello world**
 
 When in your kscript2 folder, you can launch KScript2 by executing:
+
     ./kscript2.sh
+
 On it's first launch it will generate default config.json for you, where you can configure mods, turn them on and off. Everytime you install or update a mod, KScript2 will generate necessary configuration if needed and will inform you about this.
 Default config looks like this.
-        {
-            "host": "127.0.0.1",
-            "port": "50301",
-            "password": "mumba",
-            "mods": [
-              "info",
-              "chat",
-              "players",
-            ]
-        }
+
+    {
+        "host": "127.0.0.1",
+        "port": "50301",
+        "password": "mumba",
+        "mods": [
+          "info",
+          "chat",
+          "players",
+        ]
+    }
 
 host - the ip adress/host name of your server machine
 port - port you run your kag server on
