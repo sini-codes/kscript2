@@ -1,0 +1,22 @@
+{
+  "name": "kscript2",
+  "version": "0.8.0",
+  "description": "King Arthur's Gold server-side scripting utility",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nitreo/kscript2"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nitreo/kscript2/issues"
+  },
+  "homepage": "https://github.com/nitreo/kscript2",
+  "dependencies": {
+    "xregexp": "^2.0.0"
+  }
+}

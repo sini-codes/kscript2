@@ -1,0 +1,5 @@
+.idea/
+ks_2.iml
+db/
+logs/*.log
+config.json
