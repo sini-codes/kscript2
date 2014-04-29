@@ -30,7 +30,7 @@ ProgressBar@ expBar;
 
 void onInit(CSprite@ this){
 	
-	if(this.getBlob() is null || this.getBlob().getPlayer() !is getLocalPlayer()) return;
+
 	
 	//Adding icons
     AddIconToken( titleIconName, "GUI/charmenu_title.png", Vec2f(157,25), 0);

@@ -17,7 +17,6 @@ var SKILLPOINTS_PER_LEVEL = 3;
 
 var MAX_LEVEL = 10;
 var db;
-var RpgPlayers = {};
 Dao.getDatastore("rpg_demo",function(err,datastore){
   db = datastore;
 });
@@ -76,8 +75,12 @@ GameEvents.on('player_killed',function(victim,killer){
 
   getPlayerByLogin(killer,function(err, player){
 
+    console.log(player.curexp);
+
     if(player.level == MAX_LEVEL) return;
     player.curexp+=EXP_ACTION.KILL;
+    console.log(player.curexp);
+
     if(player.curexp >= player.maxexp){
       var diff = player.curexp - player.maxexp;
       player.level+=1;

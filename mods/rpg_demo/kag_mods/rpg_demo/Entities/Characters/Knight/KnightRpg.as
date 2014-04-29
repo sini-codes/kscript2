@@ -63,7 +63,6 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params ){
 	if(cmd == this.getCommandID(cinfo_cmd)){
 		string playerName = params.read_string();
 		if(this.getPlayer() is null || this.getPlayer().getUsername() != playerName){
-			print('player is null =(');
 				return;
 		}
 		

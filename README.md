@@ -169,8 +169,6 @@ Finally we open KAG/mods.cfg and simply add a new line: `ks_mods`
 
 Some mods will not be able to function properly without corresponding Kag2d mods (like 'chat' and 'stats'). So check mods folder for "kag_mods" to see if there exists any dependency.
 
-Yes at this point, you do not have to restart the server. In fact, you only need to restart the server when you need to install kag2d mods.
-
 Now, when in game, you can type `"/me OWNZ"` into chat and see a global message.
 
 
