@@ -29,13 +29,13 @@ Feel free to post any ideas as well! :)
 Knight RPG Demo may have some weird bug which causes client side errors, when a player spawns.
 We've tested a lot and seems like the issue is fixed. If not, report it here, please. Reconnecting several times is a temporary fix.
 
-*Getting started (For developers and server hosters)*
+**Getting started (For developers and server hosters)**
 
 **1. Installation**
 
 You can either download KScript2 from repository pages:
     https://github.com/nitreo/kscript2
-or simply use terminal command:
+or simply use terminal command:  
     git clone https://github.com/nitreo/kscript2
 
 KScript2 does not require to be in KAG folder. Same as original KScript, it does not require KScript2 to run on the same machine.
