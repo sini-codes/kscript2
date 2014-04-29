@@ -23,27 +23,21 @@ Parser.onRegex(
       hwid: hwid,
 
       kick : function(){
-        if(!Commands) return;
         Commands.kick(this.id);
       },
       ban : function(time){
-        if(!Commands) return;
         Commands.ban(this.id,time);
       },
       mute : function(time){
-        if(!Commands) return;
         Commands.mute(this.id);
       },
       freeze : function(){
-        if(!Commands) return;
         Commands.freeze(this.id);
       },
       unfreeze : function(){
-        if(!Commands) return;
         Commands.unfreeze(this.id);
       },
       unban : function(){
-        if(!Commands) return;
         Commands.unban(this.id);
       },
       unmute : function(){
