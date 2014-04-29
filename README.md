@@ -2,31 +2,31 @@ Zen Laboratories humbly presents a remake of KScript (originally created by Mast
 
 If you ever wanted to have global ranking system:chicken:, ingame currency:gold_mat:, complete RPG system:sword:, special items available only for certain players and personal storages for them :chest:, KScript2 is here to help.
 
-Features:
+**Features:**
 - Easily extendable parsing system
 - Handy services to help you
 - Example mods, which perform common tasks + Knight RPG Demo
 - Clever system of configuration
 
-Idea:
+**Idea:**
 KScript2 follows the same idea as the original KScript - parsing the RCON output and writing to it. You can easily extend parsing system to define your own game events, coming from vanilla kag or your own mods. Then you can perform ANY task on your server be it saving/reading to/from external database, requesting weather from the Internet, or just posting a message to your IRC channel. Finally you can either respond to server with your own custom code or make use of handy mods, which do it for you!.  
 The entire behavior of KScript2 is defined in mods.
 
-Stability:
+**Stability:**
 KScript2 was battle tested on Black Death Servers. The entire global ranking system is done using this utility.
 
-Roadmap:
+**Roadmap:**
 A few helpful mods are already there. Now we will be focusing on documentation, adding new mods, examples and bugfixes. If the concept survives, we will move to more advanced examples and mods.
 You can report bugs and request common mods on the github repository or right in this thread.
 Feel free to post any ideas! :)
 
-Known Issues:
+**Known Issues:**
 Knight RPG Demo may have some weird bug which causes client side errors, when a player spawns.
 We've tested a lot and seems like the issue is fixed. If not, report it here, please. Reconnecting several times is a temporary fix.
 
-Getting started (For developers and server hosters)
+*Getting started (For developers and server hosters)*
 
-1. Installation
+**1. Installation**
 You can either download KScript2 from repository pages:
     https://github.com/nitreo/kscript2
 or simply use terminal command:
@@ -34,7 +34,7 @@ or simply use terminal command:
 
 KScript2 does not require to be in KAG folder. Same as original KScript, it does not require KScript2 to run on the same machine.
 
-2. Preparing server
+**2. Preparing server**
 Open
     Kag/autoconfig.cfg.
 Make sure that `sv_tcpr` is set to 1
@@ -44,22 +44,21 @@ And set up a password
 
 You should also know the port of your KAG server (default is 50301) and IP (in case you are running KScript2 on a different machine)
 
-3. Hello world
+**3. Hello world**  
 When in your kscript2 folder, you can launch KScript2 by executing:
     ./kscript2.sh
 On it's first launch it will generate default config.json for you, where you can configure mods, turn them on and off. Everytime you install or update a mod, KScript2 will generate necessary configuration if needed and will inform you about this.
 Default config looks like this.
-
-    {
-        "host": "127.0.0.1",
-        "port": "50301",
-        "password": "mumba",
-        "mods": [
-          "info",
-          "chat",
-          "players",
-        ]
-    }
+        {
+            "host": "127.0.0.1",
+            "port": "50301",
+            "password": "mumba",
+            "mods": [
+              "info",
+              "chat",
+              "players",
+            ]
+        }
 
 host - the ip adress/host name of your server machine
 port - port you run your kag server on
