@@ -34,8 +34,11 @@ We've tested a lot and seems like the issue is fixed. If not, report it here, pl
 **1. Installation**
 
 You can either download KScript2 from repository pages:
+
     https://github.com/nitreo/kscript2
+
 or simply use terminal command:
+
     git clone https://github.com/nitreo/kscript2
 
 KScript2 does not require to be in KAG folder. Same as original KScript, it does not require KScript2 to run on the same machine.
@@ -159,30 +162,14 @@ Installation:
 
 1. Configure "stats" mods properly, turn it on and add required script to your rules:
 
-    KScript2/mods/stats/kag_mods/RulesScripts/Killfeed.as
+    `KScript2/mods/stats/kag_mods/RulesScripts/Killfeed.as`
 
 2. Configure "rpg_demo" mod properly, turn it on and install required mod:
 
-    KScript2/mods/rpg_demo/kag_mods/rpg_demo
-
-Install it as a usual Kag2d Beta mod: copy "rpg_demo" to Kag/Mods folder, add "rpg_demo" line to your Kag/mods.cfg.
+    `KScript2/mods/rpg_demo/kag_mods/rpg_demo`
+    Install it as a usual Kag2d Beta mod: copy `"rpg_demo"` to `Kag/Mods` folder, add `"rpg_demo"` line to your `Kag/mods.cfg`.
 
 3. Launch the server, wait until it loads, start KScript2.
 
-`Known Issue:`
+Known Issue:
 Knight RPG Demo may have some weird bug which causes errors client side, when a player spawns. It happens with uncertain probability. We've tested a lot and seems like the issue is fixed. If not, report it here, please.
-
-Things to come today/tomorrow
-
-Advanced Getting started (For developers)
-1. Core
-2. Creating a simple mod
- 2.0 Combining KScript2 with your kag2d mod
- 2.1 Extending parsing system
- 2.2 Making use of persistence
- 2.3 Exposing global events for other mods
- 2.4 Exposing global service for other mods
- 2.5 Testing
-3. Further Ideas
-
-API Documentation
