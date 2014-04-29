@@ -34,7 +34,7 @@ or simply use terminal command:
 
 KScript2 does not require to be in KAG folder. Same as original KScript, it does not require KScript2 to run on the same machine.
 
-**2. Preparing server**  
+**2. Preparing server**
 Open
     Kag/autoconfig.cfg.
 Make sure that `sv_tcpr` is set to 1
@@ -66,10 +66,10 @@ password - your RCON password
 mods - list of mods to be turned on.
 
 You will also notice other settings below: these are mods settings. Some mods may ask you to configure them. It depends on the mod itself. Example: "info" mod configuration looks like this:
-    "info" :{
-      "infoInterval": "30",
-      "infoMessage": "Welcome to our Super cool servers!\nNew content coming soon!\nBe nice and read books!"
-    }
+        "info" :{
+          "infoInterval": "30",
+          "infoMessage": "Welcome to our Super cool servers!\nNew content coming soon!\nBe nice and read books!"
+        }
 
 It allows you to set a text which will appear as a global message with a certain interval (in seconds).
 Once you filled config with required data, start your server, wait for it to load, and, once again, execute
