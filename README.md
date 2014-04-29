@@ -1,6 +1,6 @@
 Zen Laboratories humbly presents a remake of KScript (originally created by Master4523 and Ardivaba for KAG Classic), with a slightly different approach, compatible with Beta.
 
-If you ever wanted to have global ranking system:chicken:, ingame currency:gold_mat:, complete RPG system:sword:, special items available only for certain players and personal storages for them :chest:, KScript2 is here to help.
+If you ever wanted to have global ranking system:chicken:, ingame currency, complete RPG system, special items available only for certain players and personal storages for them, KScript2 is here to help.
 
 **Features:**
 
@@ -21,8 +21,8 @@ KScript2 was battle tested on Black Death Servers. The entire global ranking sys
 **Roadmap:**
 
 A few helpful mods are already there. Now we will be focusing on documentation, adding new mods, examples and bugfixes. If the concept survives, we will move to more advanced examples and mods.
-You can report bugs and request common mods on the github repository or right in this thread.
-Feel free to post any ideas! :)
+You can report bugs and request common mods in the issues section.
+Feel free to post any ideas as well! :)
 
 **Known Issues:**
 
@@ -84,7 +84,7 @@ Once you filled config with required data, start your server, wait for it to loa
     ./kscript2.sh
 You should now see your "info" message in game chat. You can also see how it is sent on your server console.
 
-**3. Adding and configuring mods**  
+**3. Adding and configuring mods**
 
 Whenever you want to install a third party KScript2 mod, you just have to copy it to your KScript2/mods folder.
 There are some mods which are not included into the default configuration. You can always see what mods you currently have by looking into your KScript2/mods/ folder.
