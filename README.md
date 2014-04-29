@@ -76,20 +76,23 @@ Default config looks like this.
         ]
     }
 
-host - the ip adress/host name of your server machine
-port - port you run your kag server on
-password - your RCON password
-mods - list of mods to be turned on.
+`host` - the ip adress/host name of your server machine
+`port` - port you run your kag server on
+`password` - your RCON password
+`mods` - list of mods to be turned on.
 
 You will also notice other settings below: these are mods settings. Some mods may ask you to configure them. It depends on the mod itself. Example: "info" mod configuration looks like this:
-        "info" :{
-          "infoInterval": "30",
-          "infoMessage": "Welcome to our Super cool servers!\nNew content coming soon!\nBe nice and read books!"
-        }
+
+    "info" :{
+      "infoInterval": "30",
+      "infoMessage": "Welcome to our Super cool servers!\nNew content coming soon!\nBe nice and read books!"
+    }
 
 It allows you to set a text which will appear as a global message with a certain interval (in seconds).
 Once you filled config with required data, start your server, wait for it to load, and, once again, execute
+
     ./kscript2.sh
+
 You should now see your "info" message in game chat. You can also see how it is sent on your server console.
 
 **3. Adding and configuring mods**
@@ -108,7 +111,7 @@ To make use of it, you first have to turn it on by adding it to the mod list in 
 
 Once you launch KScript2, it will inform you:
 
-Warning: New config has been generated for you at /home/sinitreo/Developement/kag/KScript2-Official/config.json.
+    Warning: New config has been generated for you at /home/sinitreo/Developement/kag/KScript2-Official/config.json.
 
 This means that "me" mod requires your attention to check it's default configuration:
 
@@ -116,38 +119,57 @@ This means that "me" mod requires your attention to check it's default configura
         "cooldown": "2"
       }
 
-Cooldown (in seconds) allows you to prevent players from spamming  /me command.
+`cooldown` - (in seconds) allows you to prevent players from spamming  /me command.
 
 Fill it with correct data or leave as it is and launch KScript2 again.
+
 Yes at this point, you do not have to restart the server. In fact, you only need to restart the server when you need to install kag2d mods.
 
-Now, when in game, you can type "/me OWNZ" into chat and see a global message. But you will notice a lil' problem. Our "/me OWNZ" command is displayed aswell. This is where combination of kag2d mods and KScript2 kicks in. If you navigate to  'KScript2/mods/chat/kag_mods/RulesScripts' folder, you will see CatchCommands.as - a little script, which eliminates every message started with "/" symbol from chat. It also prints the message itself to RCON in a more clear manner, so that KScript2 "chat" mod can easily identify the sender and the command. You have to attach this script to your server Rules. I will not describe how to do it here, but feel free to post a question in this thread if you need help.
+Now, when in game, you can type `"/me OWNZ"` into chat and see a global message.
+
+But you will notice a lil' problem. Our "/me OWNZ" command is displayed aswell. This is where combination of kag2d mods and KScript2 kicks in. If you navigate to
+
+    'KScript2/mods/chat/kag_mods/RulesScripts'
+
+folder, you will see `CatchCommands.as` - a little script, which eliminates every message started with "/" symbol from chat. It also prints the message itself to RCON in a more clear manner, so that KScript2 "chat" mod can easily identify the sender and the command.
+
+You have to attach this script to your server Rules. I will not describe how to do it here, but feel free to post a question in this thread if you need help.
 
 Some mods will not be able to function properly without corresponding Kag2d mods. So check mods folder for "kag_mods" to see if there exists any dependency.
 
-6. Advanced mods - Knight RPG demo
+*6. Advanced mods - Knight RPG demo*
 
 The mod itself is visible at 1:35 for example.
 
-[media=youtube]90nZ5qzSRB0[/media]
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=90nZ5qzSRB0
+" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg"
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
-This is a little showcase of combining Kag2d mod and KScript2, features
+This is a little showcase of combining Kag2d mod and KScript2, features:
+
 - Calculating experience, levels, skillpoints...
 - Updating those stats on the player
 - Persisting stats between connections, so your progress is not lost.
 
 ACHTUNG I: This is only a DEMO. It is neither good tested nor polished. There is no good balance.
+
 ACHTUNG II: This is not a good example of how you should write kag2d mods. Instead it does it's best to demonstrate how KScript2 mod communicates with the Kag2d mod and the server.
 
 Installation:
+
 1. Configure "stats" mods properly, turn it on and add required script to your rules:
+
     KScript2/mods/stats/kag_mods/RulesScripts/Killfeed.as
+
 2. Configure "rpg_demo" mod properly, turn it on and install required mod:
+
     KScript2/mods/rpg_demo/kag_mods/rpg_demo
+
 Install it as a usual Kag2d Beta mod: copy "rpg_demo" to Kag/Mods folder, add "rpg_demo" line to your Kag/mods.cfg.
+
 3. Launch the server, wait until it loads, start KScript2.
 
-Known Issue:
+`Known Issue:`
 Knight RPG Demo may have some weird bug which causes errors client side, when a player spawns. It happens with uncertain probability. We've tested a lot and seems like the issue is fixed. If not, report it here, please.
 
 Things to come today/tomorrow
