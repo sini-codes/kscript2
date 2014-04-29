@@ -1,4 +1,4 @@
-Introduction
+Introduction Modified
 
 KScript2 follows the concept of KScript (originally created by Master4523 fo KAG Classic).
 It provides convenient way of parsing RCON and executing all sorts of actions which are not available
