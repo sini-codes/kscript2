@@ -114,7 +114,7 @@ To make use of it, you first have to turn it on by adding it to the mod list in 
 
 Once you launch KScript2, it will inform you:
 
-    Warning: New config has been generated for you at /home/sinitreo/Developement/kag/KScript2-Official/config.json.
+    Warning: New configs required by mods have been added to your main config. Fill it with correct data and try again.
 
 This means that "me" mod requires your attention to check it's default configuration:
 
