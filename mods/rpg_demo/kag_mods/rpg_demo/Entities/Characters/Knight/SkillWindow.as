@@ -61,7 +61,7 @@ void onInit(CSprite@ this){
 	@agilityPopup =  @Rectangle(Vec2f(50,-30),Vec2f(350,30));
 
 	strengthPopup.addChild(@Label(Vec2f(10,6),Vec2f(80,80),"Increases your damage",SColor(255,255,255,255)));
-	agilityPopup.addChild(@Label(Vec2f(10,6),Vec2f(180,80),"Increases your attack speed and movement",SColor(255,255,255,255)));
+	agilityPopup.addChild(@Label(Vec2f(10,6),Vec2f(180,80),"Increases your slashing speed",SColor(255,255,255,255)));
 
 	agilityAddBtn.addChild(addIcon1);
 	agilityIcon.addChild(aglityLabel);
