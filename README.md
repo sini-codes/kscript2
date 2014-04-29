@@ -124,21 +124,55 @@ This means that "me" mod requires your attention to check it's default configura
 
 `cooldown` - (in seconds) allows you to prevent players from spamming  /me command.
 
-Fill it with correct data or leave as it is and launch KScript2 again.
+Fill it with correct data. Now, it's time too look at how KScript2 mods can be combined with KAG mods.
+
+"me" mod depends on "chat" mod. But "chat" mod has a dependency on Kag2d script, which you can find at
+
+    'KScript2/mods/chat/kag_mods/RulesScripts'
+
+You will see `CatchCommands.as` - a little script, which eliminates every message started with "/" symbol from chat. It also prints the message itself to RCON in a more clear manner, so that KScript2 "chat" mod can easily identify the sender and the command.
+
+You have to attach this script to your server Rules.
+
+It's fairly easy if you are not running custom gamemode (In fact, with custom gamemode it could be even easier).
+Whatever gamemode you are going to run, you need to grab it's .cfg file. Suppose we are going to play TDM. Then we copy this file:
+
+    KAG/Base/Rules/TDM/gamemode.cfg
+
+To
+
+    KAG/Mods/ks_mods/Rules/TDM/
+
+Then we copy our little `CatchCommands.as` into the same folder.
+
+After that we open copied gamemode.cfg with any text editor and look for something like:
+
+    ...
+
+    scripts                            = KAG.as;
+                                         TDM.as;
+										 TDM_Interface.as;
+
+	...
+
+We insert our script name at the very end of the list (most of the time):
+
+    ...
+
+    scripts                            = KAG.as;
+                                         TDM.as;
+										 TDM_Interface.as;
+									     CatchCommands.as;
+	...
+
+Finally we open KAG/mods.cfg and simply add a new line: `ks_mods`
+
+Some mods will not be able to function properly without corresponding Kag2d mods (like 'chat' and 'stats'). So check mods folder for "kag_mods" to see if there exists any dependency.
 
 Yes at this point, you do not have to restart the server. In fact, you only need to restart the server when you need to install kag2d mods.
 
 Now, when in game, you can type `"/me OWNZ"` into chat and see a global message.
 
-But you will notice a lil' problem. Our "/me OWNZ" command is displayed aswell. This is where combination of kag2d mods and KScript2 kicks in. If you navigate to
-
-    'KScript2/mods/chat/kag_mods/RulesScripts'
-
-folder, you will see `CatchCommands.as` - a little script, which eliminates every message started with "/" symbol from chat. It also prints the message itself to RCON in a more clear manner, so that KScript2 "chat" mod can easily identify the sender and the command.
-
-You have to attach this script to your server Rules. I will not describe how to do it here, but feel free to post a question in this thread if you need help.
-
-Some mods will not be able to function properly without corresponding Kag2d mods. So check mods folder for "kag_mods" to see if there exists any dependency.
 
 *6. Advanced mods - Knight RPG demo*
 
@@ -170,6 +204,10 @@ Installation:
     Install it as a usual Kag2d Beta mod: copy `"rpg_demo"` to `Kag/Mods` folder, add `"rpg_demo"` line to your `Kag/mods.cfg`.
 
 3. Launch the server, wait until it loads, start KScript2.
+
+Usage:
+
+Switch to knight and press K. Read popups over icons.
 
 Known Issue:
 Knight RPG Demo may have some weird bug which causes errors client side, when a player spawns. It happens with uncertain probability. We've tested a lot and seems like the issue is fixed. If not, report it here, please.
