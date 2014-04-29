@@ -9,7 +9,7 @@ If you ever wanted to have global ranking system:chicken:, ingame currency:gold_
 - Example mods, which perform common tasks + Knight RPG Demo
 - Clever system of configuration
 
-**Idea:**
+**Idea:**  
 KScript2 follows the same idea as the original KScript - parsing the RCON output and writing to it. You can easily extend parsing system to define your own game events, coming from vanilla kag or your own mods. Then you can perform ANY task on your server be it saving/reading to/from external database, requesting weather from the Internet, or just posting a message to your IRC channel. Finally you can either respond to server with your own custom code or make use of handy mods, which do it for you!.  
 The entire behavior of KScript2 is defined in mods.
 
@@ -45,7 +45,7 @@ And set up a password
 
 You should also know the port of your KAG server (default is 50301) and IP (in case you are running KScript2 on a different machine)
 
-**3. Hello world**  
+**3. Hello world**
 When in your kscript2 folder, you can launch KScript2 by executing:
     ./kscript2.sh
 On it's first launch it will generate default config.json for you, where you can configure mods, turn them on and off. Everytime you install or update a mod, KScript2 will generate necessary configuration if needed and will inform you about this.
