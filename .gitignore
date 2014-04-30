@@ -4,3 +4,5 @@ db/
 logs/*.log
 config.json
 KScript2-Official.iml
+Gemfile
+Gemfile.lock

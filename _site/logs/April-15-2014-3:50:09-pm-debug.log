@@ -1,0 +1,2 @@
+2014-04-15T13:50:10.339Z - Warning: Server has already been modified. Stopping injection.
+2014-04-15T13:50:24.334Z - Failure: Cannot connect to Mongo DB named kagdb on localhost

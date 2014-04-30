@@ -1,0 +1,3 @@
+2014-04-15T14:06:58.716Z - Warning: Server has already been modified. Stopping injection.
+2014-04-15T14:07:27.979Z - Failure: RangeError: Maximum call stack size exceeded
+2014-04-15T14:07:27.979Z - Failure: Cannot connect to Mongo DB named kagdb on localhost

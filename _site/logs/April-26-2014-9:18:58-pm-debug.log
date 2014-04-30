@@ -1,0 +1,16 @@
+2014-04-26T19:18:58.864Z - Failure: Error: Cannot find module './mods/_info'
+2014-04-26T19:18:58.865Z - Warning: Sorry, can't load _info mod :(
+2014-04-26T19:18:58.865Z - Failure: Error: Cannot find module './mods/_me'
+2014-04-26T19:18:58.865Z - Warning: Sorry, can't load _me mod :(
+2014-04-26T19:18:58.866Z - Failure: Error: Cannot find module './mods/_chat'
+2014-04-26T19:18:58.866Z - Warning: Sorry, can't load _chat mod :(
+2014-04-26T19:18:58.866Z - Failure: Error: Cannot find module './mods/_injector'
+2014-04-26T19:18:58.866Z - Warning: Sorry, can't load _injector mod :(
+2014-04-26T19:18:58.867Z - Failure: Error: Cannot find module './mods/_ranks_mongo'
+2014-04-26T19:18:58.867Z - Warning: Sorry, can't load _ranks_mongo mod :(
+2014-04-26T19:18:58.867Z - Failure: Error: Cannot find module './mods/_counter'
+2014-04-26T19:18:58.867Z - Warning: Sorry, can't load _counter mod :(
+2014-04-26T19:18:58.874Z - Failure: Error: Cannot find module './mods/_beginner'
+2014-04-26T19:18:58.874Z - Warning: Sorry, can't load _beginner mod :(
+2014-04-26T19:36:22.319Z - Warning: Connection with server is lost.
+2014-04-26T19:36:22.320Z - Warning: Reconnecting in 5 seconds...

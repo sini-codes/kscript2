@@ -1,0 +1,16 @@
+2014-04-26T04:35:32.722Z - Failure: Error: Cannot find module './mods/_info'
+2014-04-26T04:35:32.722Z - Warning: Sorry, can't load _info mod :(
+2014-04-26T04:35:32.723Z - Failure: Error: Cannot find module './mods/_me'
+2014-04-26T04:35:32.723Z - Warning: Sorry, can't load _me mod :(
+2014-04-26T04:35:32.723Z - Failure: Error: Cannot find module './mods/_chat'
+2014-04-26T04:35:32.723Z - Warning: Sorry, can't load _chat mod :(
+2014-04-26T04:35:32.723Z - Failure: Error: Cannot find module './mods/_injector'
+2014-04-26T04:35:32.723Z - Warning: Sorry, can't load _injector mod :(
+2014-04-26T04:35:32.724Z - Failure: Error: Cannot find module './mods/_ranks_mongo'
+2014-04-26T04:35:32.724Z - Warning: Sorry, can't load _ranks_mongo mod :(
+2014-04-26T04:35:32.725Z - Failure: Error: Cannot find module './mods/_counter'
+2014-04-26T04:35:32.725Z - Warning: Sorry, can't load _counter mod :(
+2014-04-26T04:35:32.731Z - Failure: Error: Cannot find module './mods/_beginner'
+2014-04-26T04:35:32.732Z - Warning: Sorry, can't load _beginner mod :(
+2014-04-26T04:35:32.733Z - Failure: TypeError: Property 'GameEvents' of object #<Object> is not a function
+2014-04-26T04:35:32.733Z - Warning: Sorry, can't load rpg_demo mod :(
