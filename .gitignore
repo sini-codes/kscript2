@@ -1,0 +1,4 @@
+db/
+logs/
+.idea/
+config.json
