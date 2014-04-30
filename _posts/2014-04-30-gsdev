@@ -30,6 +30,6 @@ By default there are 6 objects that are available from any mod:
  - Config
  - Dao
 
-**(RCON)[]**
+**(RCON)[/docs/rcon.html]**
 
 This service is
