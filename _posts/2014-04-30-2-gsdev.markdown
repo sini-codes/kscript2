@@ -24,12 +24,12 @@ Anyway, you have the power of NodeJS and tons of modules for it to achieve any g
 
 By default there are 6 objects that are available from any mod:
 
- - [RCON](/docs/rcon.html)
- - [Parser](/docs/parser.html)
- - [GameEvents](/docs/game_events.html)
- - [Logger](/docs/logger.html)
- - [Config](/docs/config.html)
- - [Dao](/docs/dao.html)
+ - [RCON](/kscript2/docs/rcon.html)
+ - [Parser](/kscript2/docs/parser.html)
+ - [GameEvents](/kscript2/docs/game_events.html)
+ - [Logger](/kscript2/docs/logger.html)
+ - [Config](/kscript2/docs/config.html)
+ - [Dao](/kscript2/docs/dao.html)
 
 These objects are so called services.
 
