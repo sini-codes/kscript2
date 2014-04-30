@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="/stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="/stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="/javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#main_content').headsmart()
+        })
+    </script>
+    <title>Kscript2 by nitreo</title>
+</head>
+
+<body>
+<a id="forkme_banner" href="https://github.com/nitreo/kscript2">View on GitHub</a>
+<div class="shell">
+
+    <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Kscript2</h1>
+            <h2>Server-side scripting utility for Kag2D Beta</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+    </header>
+
+    <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/nitreo/kscript2/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/nitreo/kscript2/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+    </section>
+
+
+    <span class="banner-fix"></span>
+
+
+    <section id="main_content">
+        <div id="post">
+    <p><strong>1. Installation</strong></p>
+
+<p>You can either download KScript2 from this <a href="http://nitreo.github.io/kscript2">Website</a> or simply use terminal command:</p>
+
+<pre><code>git clone https://github.com/nitreo/kscript2</code></pre>
+
+<p>KScript2 does not require to be in KAG folder. Same as original KScript, it does not require KScript2 to run on the same machine.</p>
+
+<p><strong>2. Preparing server</strong></p>
+
+<p>Open</p>
+
+<pre><code>Kag/autoconfig.cfg.</code></pre>
+
+<p>Make sure that <code>sv_tcpr</code> is set to 1</p>
+
+<pre><code>sv_tcpr = 1</code></pre>
+
+<p>And set up a password</p>
+
+<pre><code>sv_rconpassword = sprskrtpswd</code></pre>
+
+<p>You should also know the port of your KAG server (default is 50301) and IP (in case you are running KScript2 on a different machine)</p>
+
+<p><strong>3. Hello world</strong></p>
+
+<p>When in your kscript2 folder, you can launch KScript2 by executing:</p>
+
+<pre><code>./kscript2.sh</code></pre>
+
+<p>On it’s first launch it will generate default config.json for you, where you can configure mods, turn them on and off. Everytime you install or update a mod, KScript2 will generate necessary configuration if needed and will inform you about this. Default config looks like this.</p>
+
+<pre><code>{
+    &quot;host&quot;: &quot;127.0.0.1&quot;,
+    &quot;port&quot;: &quot;50301&quot;,
+    &quot;password&quot;: &quot;mumba&quot;,
+    &quot;mods&quot;: [
+      &quot;info&quot;,
+      &quot;chat&quot;,
+      &quot;players&quot;,
+    ]
+}</code></pre>
+
+<p><code>host</code> - the ip adress/host name of your server machine <code>port</code> - port you run your kag server on <code>password</code> - your RCON password <code>mods</code> - list of mods to be turned on.</p>
+
+<p>You will also notice other settings below: these are mods settings. Some mods may ask you to configure them. It depends on the mod itself. Example: “info” mod configuration looks like this:</p>
+
+<pre><code>&quot;info&quot; :{
+  &quot;infoInterval&quot;: &quot;30&quot;,
+  &quot;infoMessage&quot;: &quot;Welcome to our Super cool servers!\nNew content coming soon!\nBe nice and read books!&quot;
+}</code></pre>
+
+<p>It allows you to set a text which will appear as a global message with a certain interval (in seconds). Once you filled config with required data, start your server, wait for it to load, and, once again, execute</p>
+
+<pre><code>./kscript2.sh</code></pre>
+
+<p>You should now see your “info” message in game chat. You can also see how it is sent on your server console.</p>
+
+<p><em>3. Adding and configuring mods</em></p>
+
+<p>Whenever you want to install a third party KScript2 mod, you just have to copy it to your KScript2/mods folder. There are some mods which are not included into the default configuration. You can always see what mods you currently have by looking into your KScript2/mods/ folder. There is a “me” mod there. Whenever a player “AbC” types “/me WINS” into chat, a global message appears in the chat: “* AbC WINS”. To make use of it, you first have to turn it on by adding it to the mod list in your config.json:</p>
+
+<pre><code>&quot;mods&quot;: [
+      &quot;info&quot;,
+      &quot;me&quot;,
+      &quot;chat&quot;,
+      &quot;players&quot;,
+    ]</code></pre>
+
+<p>Once you launch KScript2, it will inform you:</p>
+
+<pre><code>Warning: New configs required by mods have been added to your main config. Fill it with correct data and try again.</code></pre>
+
+<p>This means that “me” mod requires your attention to check it’s default configuration:</p>
+
+<pre><code>  &quot;me&quot;: {
+    &quot;cooldown&quot;: &quot;2&quot;
+  }</code></pre>
+
+<p><code>cooldown</code> - (in seconds) allows you to prevent players from spamming /me command.</p>
+
+<p>Fill it with correct data. Now, it’s time too look at how KScript2 mods can be combined with KAG mods.</p>
+
+<p>“me” mod depends on “chat” mod. But “chat” mod has a dependency on Kag2d script, which you can find at</p>
+
+<pre><code>'KScript2/mods/chat/kag_mods/RulesScripts'</code></pre>
+
+<p>You will see <code>CatchCommands.as</code> - a little script, which eliminates every message started with “/” symbol from chat. It also prints the message itself to RCON in a more clear manner, so that KScript2 “chat” mod can easily identify the sender and the command.</p>
+
+<p>You have to attach this script to your server Rules.</p>
+
+<p>It’s fairly easy if you are not running custom gamemode (In fact, with custom gamemode it could be even easier). Whatever gamemode you are going to run, you need to grab it’s .cfg file. Suppose we are going to play TDM. Then we copy this file:</p>
+
+<pre><code>KAG/Base/Rules/TDM/gamemode.cfg</code></pre>
+
+<p>To</p>
+
+<pre><code>KAG/Mods/ks_mods/Rules/TDM/</code></pre>
+
+<p>Then we copy our little <code>CatchCommands.as</code> into the same folder.</p>
+
+<p>After that we open copied gamemode.cfg with any text editor and look for something like:</p>
+
+<pre><code>...
+
+scripts                            = KAG.as;
+                                     TDM.as;
+                                     TDM_Interface.as;
+
+...</code></pre>
+
+<p>We insert our script name at the very end of the list (most of the time):</p>
+
+<pre><code>...
+
+scripts                              = KAG.as;
+                                     TDM.as;
+                                     TDM_Interface.as;
+                                     CatchCommands.as;
+...</code></pre>
+
+<p>Finally we open KAG/mods.cfg and simply add a new line: <code>ks_mods</code></p>
+
+<p>Some mods will not be able to function properly without corresponding Kag2d mods (like ‘chat’ and ‘stats’). So check mods folder for “kag_mods” to see if there exists any dependency.</p>
+
+<p>Now, when in game, you can type <code>&quot;/me OWNZ&quot;</code> into chat and see a global message.</p>
+
+<p><em>4. Advanced mods - Knight RPG demo</em></p>
+
+<p>The mod itself is visible at 1:35 for example.</p>
+
+<p>This is a little showcase of combining Kag2d mod and KScript2, features:</p>
+
+<ul>
+<li>Calculating experience, levels, skillpoints</li>
+
+<li>Updating those stats on the player</li>
+
+<li>Persisting stats between connections, so your progress is not lost.</li>
+</ul>
+
+<p>ACHTUNG I: This is only a DEMO. It is neither good tested nor polished. There is no good balance.</p>
+
+<p>ACHTUNG II: This is not a good example of how you should write kag2d mods. Instead it does it’s best to demonstrate how KScript2 mod communicates with the Kag2d mod and the server.</p>
+
+<p>Installation:</p>
+
+<ol>
+<li>
+<p>Configure “stats” mods properly, turn it on and add required script to your rules:</p>
+
+<p><code>KScript2/mods/stats/kag_mods/RulesScripts/Killfeed.as</code></p>
+</li>
+
+<li>
+<p>Configure “rpg_demo” mod properly, turn it on and install required mod:</p>
+
+<p><code>KScript2/mods/rpg_demo/kag_mods/rpg_demo</code> Install it as a usual Kag2d Beta mod: copy <code>&quot;rpg_demo&quot;</code> to <code>Kag/Mods</code> folder, add <code>&quot;rpg_demo&quot;</code> line to your <code>Kag/mods.cfg</code>.</p>
+</li>
+
+<li>
+<p>Launch the server, wait until it loads, start KScript2.</p>
+</li>
+</ol>
+
+<p>Usage:</p>
+
+<p>Switch to knight and press K. Read popups over icons.</p>
+
+<p>Known Issue: Knight RPG Demo may have some weird bug which causes errors client side, when a player spawns. It happens with uncertain probability. We’ve tested a lot and seems like the issue is fixed. If not, report it here, please.</p>
+</div>
+    </section>
+
+    <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/nitreo">nitreo</a> can be found on <a href="https://github.com/nitreo/kscript2">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+    </footer>
+
+</div>
+
+
+</body>
+</html>

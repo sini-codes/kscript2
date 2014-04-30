@@ -3,3 +3,5 @@ logs/
 .idea/
 config.json
 KScript2-Official.iml
+Gemfile
+Gemfile.lock
