@@ -127,9 +127,12 @@ And this is good, since now other mods don't have to catch event themselves. Ins
 Logger will help you to make fancy output. Usage is very simple:
 
 `Logger.KScript2("logged under KScript2 label")`  marks your input with KScript2 label
+
 `Logger.Server("logged under Server label")`      marks your input with Server label
+
 `Logger.Warning("logged under Warning label")`    marks your input with Warning label
-`Logger.Failure("logged under Failure label")`    marks your input with Failure label  
+
+`Logger.Failure("logged under Failure label")`    marks your input with Failure label
 
 *Config*
 
