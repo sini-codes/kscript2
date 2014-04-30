@@ -1,0 +1,168 @@
+---
+layout: post
+title: KScript2 for coders
+---
+
+This is a guide to how you can utilize KScript2.
+
+As a developer you are going to write mods. In fact, KScript2 is barely dependent on kag.
+The entire behavior is defined in mods.
+
+*What a single mod can do?*
+
+    - Communicate with server using RCON
+    - Parse messages from server
+    - Emit events for other mods
+    - React to events from other mods
+    - Anything else
+
+Some mods can parse server messages and emit events.
+Others can react to events and send some data to server.
+Anyway, you have the power of NodeJS and tons of modules for it to achieve any goal.
+
+*Core:*
+
+By default there are 6 objects that are available from any mod:
+
+ - [RCON](/docs/rcon.html)
+ - [Parser](/docs/parser.html)
+ - [GameEvents](/docs/game_events.html)
+ - [Logger](/docs/logger.html)
+ - [Config](/docs/config.html)
+ - [Dao](/docs/dao.html)
+
+These objects are so called services.
+
+*RCON*
+
+RCON service allows you to send data to KAG server.
+
+Here is how you send "hello" to server from your mod:
+```javascript
+    RCON.send("hello");
+```
+Note: all the messages you send are automatically appended with "\r\n".
+
+This is how you can perform kick "hack3r" using native server commands:
+```javascript
+    RCON.send( '/kick "hack3r"' );
+```
+
+Note: To simplify common tasks, corresponding mods are shipped with KScript2. 'players' mod allows you to do the following from any place in your code:
+```javascript
+    Players['hack3r'].kick();
+```
+
+*Parser*
+
+Parser service allows you to execute some code when server sends a specific message.
+It's fairly simple to do. You just tell what you want and you get it. Here is a simple example:
+
+Suppose we want to catch the moment, when player connects and welcome him with a global message.
+If we look closely to server output, we can see, that when a player joins, server prints this:
+
+    * Sinitreo connected (admin: 0 guard 0 gold 1 tester 0)
+
+And this is how you catch the event, get his username and send a global message to greet him:
+
+```javascript
+Parser.onRegex(
+  "^\\*\\s" +
+  "(?<player> [\\w-]+)" +
+  "[\\s]+ connected",
+  function (player) {
+    // player variable contains username of a connected player
+    // so we send a welcome message for him.
+    RCON.send( '/msg "hello' + player + '"');
+  }
+);
+```
+
+You define what you want to get in the regular expression and you receive it in your callback.
+
+Here is a regular expression decoding:
+
+```javascript
+  "^\\*\\s" +             //asteriks with a space is followed by
+  "(?<player> [\\w-]+)" + //player's name which is a sequence of any word symbols and dashes followed by
+  "[\\s]+ connected",     //any amount of spaces and a word "connected"
+```
+
+When developing a kag mod, you can simply print necessary information and parse it in you KScript2 code.
+
+Note: 'players' mod makes use of parsing to catch players connection/disconnection and you can receive players list and information about them in the `Players` object, if you have this mod activated.
+
+Note: If you connect as a localhost, server output is slightly different
+
+*GameEvents*
+
+This service allows you to define your own game events and hook to events provided by other mods.
+
+Here is a little example:
+
+```javascript
+Parser.onRegex(
+  "^\\*\\s" +
+  "(?<player> [\\w-]+)" +
+  "[\\s]+ connected",
+  function (player) {
+    GameEvents.emit('player_connected',player);
+  }
+);
+```
+
+At the moment when player connects, we emit an event. Here is how we can use it in any other mod:
+
+```javascript
+GameEvents.on('player_connected',function(player){
+   RCON.send( '/msg "hello' + player + '"');
+})
+```
+
+Basically, what we have done is we split the parsing example code into 2 different mods!
+And this is good, since now other mods don't have to catch event themselves. Instead they can just hook to the event.
+
+*Logger*
+
+Logger will help you to make fancy output. Usage is very simple:
+
+`Logger.KScript2("logged under KScript2 label")`  marks your input with KScript2 label
+`Logger.Server("logged under Server label")`      marks your input with Server label
+`Logger.Warning("logged under Warning label")`    marks your input with Warning label
+`Logger.Failure("logged under Failure label")`    marks your input with Failure label
+
+*Config*
+
+Config service allows you to make your mod configurable. Whenever you want to expose some settings fo the end user,
+you create a default.json file in your mod folder. You fill this file with a settings template in form of JSON:
+
+```javascript
+    {
+        "antispam" : "true"
+        "admins" : [ "bomberman",
+                    "geti",
+                    "sinitreo"
+                    ]
+    }
+```
+
+When user launches KScript2 with your mod activated, he will get new values generated in his main config.jso.
+Your template will be used as the default configuration.
+In your mod, you can access those settings as:
+
+    `Config.nameOfYourMod.antispam`
+
+*Dao*
+
+Dao services proved you with datastores to save/load data to/from files in the db folder.
+Example:
+
+First we need to load the datastore. In case we do not have `db/coolmod` file, it will be generated.
+```javascript
+    var db;
+    Dao.getDatastore("coolmod",function(err,datastore){
+        db = datastore;
+    });
+```
+
+Now you can use the power of NeDB datastores. Check [this](https://github.com/louischatriot/nedb) repo to get a complete set of examples
