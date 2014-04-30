@@ -22,24 +22,61 @@ Parser.onRegex(
       ip: ip,
       hwid: hwid,
 
+      /**
+       * Description
+       * @method kick
+       * @return 
+       */
       kick : function(){
         Commands.kick(this.id);
       },
+      /**
+       * Description
+       * @method ban
+       * @param {} time
+       * @return 
+       */
       ban : function(time){
         Commands.ban(this.id,time);
       },
+      /**
+       * Description
+       * @method mute
+       * @param {} time
+       * @return 
+       */
       mute : function(time){
         Commands.mute(this.id);
       },
+      /**
+       * Description
+       * @method freeze
+       * @return 
+       */
       freeze : function(){
         Commands.freeze(this.id);
       },
+      /**
+       * Description
+       * @method unfreeze
+       * @return 
+       */
       unfreeze : function(){
         Commands.unfreeze(this.id);
       },
+      /**
+       * Description
+       * @method unban
+       * @return 
+       */
       unban : function(){
         Commands.unban(this.id);
       },
+      /**
+       * Description
+       * @method unmute
+       * @return 
+       */
       unmute : function(){
         Commands.unmute(this.id);
       }

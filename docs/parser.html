@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>parser.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>parser.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>Parsing service is available as <code>Parser</code></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>It uses super cool <code>XRegExp</code> library under the hood, and allows readable regular expressions.
+Refer <a href="http://xregexp.com/">here</a> for documentation on XRegExp</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Currently there are 4 methods to help you extend the parsing system:</p>
+<ul>
+<li>Parser.onRegex()</li>
+<li>Parser.onceOnRegex()</li>
+<li>Parser.onComposition()</li>
+<li>Parser.onceOnComposition()</li>
+</ul>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Look for corresponding comments to the right to get a necessary information or take a look at example mods.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> xRegExp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'xregexp'</span>).XRegExp;
+<span class="hljs-comment">/**
+ * Description
+ * @Constructor Parser
+ * @return 
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parser</span><span class="hljs-params">()</span> {</span>
+
+  <span class="hljs-keyword">var</span> expressionMap = {};
+  <span class="hljs-keyword">var</span> onceExpressionMap = {};
+  <span class="hljs-keyword">var</span> composites = [];
+  <span class="hljs-keyword">var</span> onceComposites = [];
+
+  <span class="hljs-comment">/**
+   * Every time parsed input matches given regular expression,
+   * callback will be called with corresponding arguments
+   * @method onRegex
+   * @param {string} regular expression to match against. It has to be a string, not a RegExp object!
+   * @param {function} callback to be called in case regular expression is matched
+   * @return 
+   */</span>
+  <span class="hljs-keyword">this</span>.onRegex = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRegex</span><span class="hljs-params">(xRegex, cb)</span> {</span>
+    expressionMap[xRegex] = expressionMap[xRegex] || [];
+    expressionMap[xRegex].push(cb);
+  };
+
+  <span class="hljs-comment">/**
+   * If parsed input matches given regular expression,
+   * callback will be called only once with corresponding arguments.
+   * @method onRegex
+   * @param {string} regular expression to match against. It has to be a string, not a RegExp object!
+   * @param {function} callback to be called in case regular expression is matched
+   * @return
+   */</span>
+  <span class="hljs-keyword">this</span>.onceOnRegex = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onceOnRegex</span><span class="hljs-params">(xRegex, cb)</span> {</span>
+    onceExpressionMap[xRegex] = onceExpressionMap[xRegex] || [];
+    onceExpressionMap[xRegex].push(cb);
+  };
+
+  <span class="hljs-comment">/**
+   * This method allows you to parse list of inputs and get them as object in your callback.
+   * Every time Composit.start matches the input, next inputs will be checked against Composit.content
+   * and, if matched, will be added to the list of results for this Composit.
+   * This will continue till some input matches Composit.end
+   * Take a look at `players` mod for good examples of usage.
+   * @method onComposition
+   * @param {Composit} Composit object in form of
+   * {
+   *  start : string-regex ,
+   *  content : string-regex ,
+   *  end : string-regex
+   * }
+   * @param {function} Callback to be called after Composit.end is matched.
+   * @return 
+   */</span>
+  <span class="hljs-keyword">this</span>.onComposition = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onComposition</span><span class="hljs-params">(composit, cb)</span> {</span>
+    composit.cb = cb;
+    composites.push(composit);
+  };
+
+  <span class="hljs-comment">/**
+   * This method allows you to parse list of inputs and get them as object in your callback.
+   * Every time Composit.start matches the input, next inputs will be checked against Composit.content
+   * and, if matched, will be added to the list of results for this Composit.
+   * This will continue till some input matches Composit.end
+   * Take a look at `players` mod for good examples of usage.
+   * @method onComposition
+   * @param {Composit} Composit object in form of
+   * {
+   *  start : string-regex ,
+   *  content : string-regex ,
+   *  end : string-regex
+   * }
+   * @param {function} Callback to be called after Composit.end is matched.
+   * @return
+   */</span>
+  <span class="hljs-keyword">this</span>.onceOnComposition = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onceOnComposition</span><span class="hljs-params">(composit, cb)</span> {</span>
+    composit.cb = cb;
+    onceComposites.push(composit);
+  }
+
+  <span class="hljs-comment">/**
+   * Makes parser parse given data
+   * @method parseData
+   * @param {string} input to parse
+   * @return 
+   */</span>
+  <span class="hljs-keyword">this</span>.parseData = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseData</span><span class="hljs-params">(input)</span> {</span>
+    checkRegexes(expressionMap, input);
+    checkRegexes(onceExpressionMap, input, <span class="hljs-literal">true</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; composites.length; i++) {
+      <span class="hljs-keyword">var</span> obj = composites[i];
+      checkComposite(obj, input);
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; onceComposites.length; i++) {
+      <span class="hljs-keyword">var</span> obj = onceComposites[i];
+      <span class="hljs-keyword">if</span>(checkComposite(obj, input))
+        composites.splice(i,<span class="hljs-number">1</span>);
+    }
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>TODO: Consider parameters in callback by parameters name. Now passed arguments fully depend on arguments order</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/**
+   * Description
+   * @method checkRegexes
+   * @param {Array} regexes
+   * @param {string} data input to check against
+   * @param {bool} removeCbOnMatch should we remove callback on match?
+   * @return 
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkRegexes</span><span class="hljs-params">(regexes, data, removeCbOnMatch)</span> {</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> regex <span class="hljs-keyword">in</span> regexes) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Ignore system props</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (!regexes.hasOwnProperty(regex)) <span class="hljs-keyword">continue</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Testing</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> match = xRegExp.exec(data, xRegExp(regex, <span class="hljs-string">'x'</span>));
+      <span class="hljs-keyword">if</span> (!match) <span class="hljs-keyword">continue</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Remove input itself</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      match.splice(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Calling each registered callback</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> expressionCallbacks = regexes[regex];
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; expressionCallbacks.length; i++) {
+        <span class="hljs-keyword">var</span> cb = expressionCallbacks[i];
+        cb.apply(<span class="hljs-literal">null</span>, match);
+        <span class="hljs-keyword">if</span> (removeCbOnMatch)
+          expressionCallbacks.splice(i,<span class="hljs-number">1</span>);
+      }
+
+    }
+  }
+
+
+  <span class="hljs-comment">/**
+   * Checks given composite against unput.
+   * @method checkComposite
+   * @param {Composit} composite
+   * @param {string} input
+   * @return bool true if composite.end is matched. Otherwise returns false;
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkComposite</span><span class="hljs-params">(composite, input)</span> {</span>
+    <span class="hljs-keyword">var</span> start = xRegExp.exec(input, xRegExp(composite.start, <span class="hljs-string">'x'</span>));
+    <span class="hljs-keyword">if</span> (!start &amp;&amp; !composite.isComposing) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">if</span> (start &amp;&amp; composite.isComposing) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Composit is already composing. TROLLED!"</span>);
+    composite.isComposing = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">var</span> content = xRegExp.exec(input, xRegExp(composite.content, <span class="hljs-string">'x'</span>));
+    <span class="hljs-keyword">if</span> (content) {
+
+      content.splice(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+
+      <span class="hljs-keyword">delete</span> content.input;
+      <span class="hljs-keyword">delete</span> content.index;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> prop <span class="hljs-keyword">in</span> content) {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">typeof</span> prop == <span class="hljs-string">'object'</span> || !content.hasOwnProperty(prop)) <span class="hljs-keyword">delete</span> content[prop];
+      }
+      console.dir(content);
+      composite.results = composite.results || [];
+      composite.results.push(content);
+    }
+    <span class="hljs-keyword">var</span> end = xRegExp.exec(input, xRegExp(composite.end, <span class="hljs-string">'x'</span>));
+    <span class="hljs-keyword">if</span> (end) {
+      composite.isComposing = <span class="hljs-literal">false</span>;
+      composite.cb(composite.results);
+      <span class="hljs-keyword">delete</span> composite.results;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+
+}
+
+module.exports = <span class="hljs-keyword">new</span> Parser();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

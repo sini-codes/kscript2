@@ -22,6 +22,12 @@ Dao.getDatastore("rpg_demo",function(err,datastore){
 });
 
 
+/**
+ * Description
+ * @method RpgPlayer
+ * @param {} login
+ * @return 
+ */
 function RpgPlayer(login) {
   this.login = login;
   this.level = 1;
@@ -33,6 +39,12 @@ function RpgPlayer(login) {
 }
 
 // server_SendCommandToPlayer(uint8, CBitStream&in, CPlayer@)
+/**
+ * Description
+ * @method compileUpdateCommand
+ * @param {} rpgPlayer
+ * @return BinaryExpression
+ */
 function compileUpdateCommand(rpgPlayer) {
   return 'CPlayer@ player = getPlayerByUsername("'+rpgPlayer.login+'");' +
     'if(player is null) return;' +
@@ -95,6 +107,13 @@ GameEvents.on('player_killed',function(victim,killer){
   });
 });
 
+/**
+ * Description
+ * @method getPlayerByLogin
+ * @param {} login
+ * @param {} cb
+ * @return 
+ */
 function getPlayerByLogin(login,cb){
   db.findOne({login : login},function(err, player){
     if(!player)
@@ -103,6 +122,13 @@ function getPlayerByLogin(login,cb){
     cb(err,player);
   });
 }
+/**
+ * Description
+ * @method savePlayer
+ * @param {} player
+ * @param {} cb
+ * @return 
+ */
 function savePlayer(player,cb){
   db.update({login:player.login},player,{upsert : true},cb);
 }
