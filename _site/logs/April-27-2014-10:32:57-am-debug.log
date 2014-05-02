@@ -1,5 +1,0 @@
-2014-04-27T08:32:57.780Z - Failure: Error: Cannot find module './mods/_counter'
-2014-04-27T08:32:57.781Z - Warning: Sorry, can't load _counter mod :(
-2014-04-27T08:32:57.790Z - Failure: Error: Cannot find module './mods/_rpg_demo'
-2014-04-27T08:32:57.791Z - Warning: Sorry, can't load _rpg_demo mod :(
-2014-04-27T08:33:02.982Z - Warning: Server has already been modified. Stopping injection.
