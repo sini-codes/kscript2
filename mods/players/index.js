@@ -52,16 +52,15 @@ Parser.onRegex(
 
 Parser.onRegex(
   "^(?<player> [\\w-]+)" +
-    "[\\s]+ changed \\s team \\s from" +
+    "[\\s]+changed[\\s]+team[\\s]+from[\\s]+" +
     "(?<oldteam> [\\d]+)" +
-    "\\s to" +
-    "(?<newteam> [\\d]+)",
+    "[\\s]+to[\\s]+" +
+    "(?<newteam> [\\d]+) .*",
   function (player,oldteam,newteam) {
     players[player].team = newteam;
     GameEvents.emit('player_changed_team',player,oldteam,newteam);
   }
 );
-
 
 var PlayerObject = function PlayerObject(login,id,ip,hwid){
   this.login = login,
