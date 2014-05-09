@@ -1,8 +1,9 @@
 var players = {};
 var playerCount = 0;
-
+var teamsInitialized = false;
 GameEvents.on("connect",function(){
   RCON.send("/players");
+
 })
 
 Parser.onRegex(
@@ -26,8 +27,37 @@ Parser.onRegex(
       players[player].hwid= hwid;
     }
     GameEvents.emit('player_update',player, players[player]);
+
+    if(!teamsInitialized){
+      setTimeout(function(){
+        RCON.send('print("LISTING TEAMS");');
+
+        for(var p in players){
+          //Ultra shit.
+          RCON.send('print("'+ p +' : "+getPlayerByUsername("'+ p+'").getTeamNum());');
+        }
+        RCON.send('print("END LISTING TEAMS");');
+
+      },1000);
+      teamsInitialized = true;
+    }
+
   }
 );
+
+Parser.onComposition({
+  start:"^LISTING[\\s]TEAMS",
+  content:"(?<player> [\\w-]+) [\\s]+ : [\\s]+(?<team> [\\d]+)",
+  end:"^END[\\s]LISTING[\\s]TEAMS"
+
+},function(pairs){
+  console.log('got pairs');
+  for (var i = 0; i < pairs.length; i++) {
+    var obj = pairs[i];
+    players[obj.player].team = obj.team
+    console.log(players[obj.player].login +" is set to "+obj.team);
+  }
+})
 
 Parser.onRegex(
   "^(?:\\*\\s)?" +
